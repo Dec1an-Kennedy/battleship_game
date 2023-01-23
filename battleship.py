@@ -23,7 +23,7 @@ letters_to_numbers = {
     'G': 6,
     'H': 7
 }
-#computer create 5 ships
+#computer creates 5 ships
 def create_ships(board):
     for ship in range(5):
         ship_row, ship_column = randint(0,7), randint(0,7)
