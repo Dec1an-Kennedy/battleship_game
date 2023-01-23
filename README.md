@@ -1,5 +1,5 @@
 # Battleship Game(single player)
-
+This is a solo player battleship game. The objective is to sink all 5 ships with only 10 tries.
 
 ## How to play! 
 
@@ -13,6 +13,27 @@
 
 - Goodluck!
 
+### in-game controls
+<details><summary>Start Game</summary>
+<img src="assets/images/start.png">
+</details>
+<details><summary>End Game</summary>
+<img src="assets/images/end.png">
+</details>
+<details><summary>Shot Missed</summary>
+<img src="assets/images/miss.png">
+</details>
+<details><summary>Shot Hit</summary>
+<img src="assets/images/hit.png">
+</details>
+<details><summary>Error in valid location</summary>
+<img src="assets/images/invalid-location.png">
+</details>
+<details><summary>Error location already hit</summary>
+<img src="assets/images/location-already.png">
+</details>
+
+
 
 ### Features Left to Implement
 
@@ -20,9 +41,11 @@
 
 
 
+
+
 ### Validator Testing 
-<details><summary>Home</summary>
-<img src="assets/images/home-lighthouse.png">
+<details><summary>Python validation</summary>
+<img src="assets/images/validator.png">
 </details>
 
 
