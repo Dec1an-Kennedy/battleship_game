@@ -1,9 +1,9 @@
 from random import randint
 
-#Board for ship locations
-hidden_board = [[" "] * 8 for x in range(8)]
-#Board for displaying hits and misses
-guess_board = [[" "] * 8 for i in range(8)]
+#Board for holding ship locations
+HIDDEN_BOARD = [[" "] * 8 for x in range(8)]
+# Board for displaying hits and misses
+GUESS_BOARD = [[" "] * 8 for i in range(8)]
 
 def print_board(board):
     print("  A B C D E F G H")
@@ -23,29 +23,27 @@ letters_to_numbers = {
     'G': 6,
     'H': 7
 }
-
-#computer creates 7 ships
+#computer create 5 ships
 def create_ships(board):
-    for ship in range(7):
+    for ship in range(5):
         ship_row, ship_column = randint(0,7), randint(0,7)
         while board[ship_row][ship_column] == "X":
             ship_row, ship_column = get_ship_location()
         board[ship_row][ship_column] = "X"
 
-        def get_ship_location():
-            row = input("Enter what row you would like to hit: ").upper()
-            while row not in "12345678":
-                print('Not a valid choice, please try selecting another row between 1-8: ').upper()
-                row = input("Enter what row you would like to hit: ").upper()
-                column = input("Enter what column you would like to hit: ").upper()
-                while column not in "ABCDEFGH":
-                    print('Not a valid choice, please try selecting another column between A-H: ')
-                    column = input("Enter what column you would like to hit: ").upper()
-                    return int(row) - 1, letters_to_numbers[column]
+def get_ship_location():
+    row = input("Enter the row of the ship: ").upper()
+    while row not in "12345678":
+        print('Not an valid choice, please select a different row')
+        row = input("Enter the row of the ship: ").upper()
+    column = input("Enter the column of the ship: ").upper()
+    while column not in "ABCDEFGH":
+        print('Not an valid choice, please select a different column')
+        column = input("Enter the column of the ship: ").upper()
+    return int(row) - 1, letters_to_numbers[column]
 
-
-#check if ships are hit
-def count_ships_hit(board):
+#check if all ships are hit
+def count_hit_ships(board):
     count = 0
     for row in board:
         for column in row:
@@ -54,25 +52,25 @@ def count_ships_hit(board):
     return count
 
 if __name__ == "__main__":
-    create_ships(hidden_board)
+    create_ships(HIDDEN_BOARD)
     turns = 10
     while turns > 0:
-        print('Guess a ship location')
-        print_board(guess_board)
+        print('Guess a battleship location')
+        print_board(GUESS_BOARD)
         row, column = get_ship_location()
-        if guess_board[row][column] == "-":
-            print('You guessed that location already, try hitting a different location')
-        elif hidden_board[row][column] == "X":
+        if GUESS_BOARD[row][column] == "-":
+            print("You guessed that location already, try hitting a different location")
+        elif HIDDEN_BOARD[row][column] == "X":
             print("Hit")
-            guess_board[row][column] == "X"
-            turns -= 1
+            GUESS_BOARD[row][column] = "X" 
+            turns -= 1  
         else:
-            print('You missed').upper()
-            guess_board[row][column] == "-"
-            turns -= 1
-        if count_ships_hit(guess_board) == 7:
-            print('You win').upper()
+            print("MISS!")
+            GUESS_BOARD[row][column] = "-"   
+            turns -= 1     
+        if count_hit_ships(GUESS_BOARD) == 5:
+            print("You win!")
             break
         print("You have " + str(turns) + " turns left")
         if turns == 0:
-            print("You ran out of turns")
+            print("You ran out of ammo")
